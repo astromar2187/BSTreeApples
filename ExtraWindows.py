@@ -4,7 +4,7 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter import ttk
-from BSTreeApples.BST import BST
+from BST import BST
 
 
 class InsertNameWindow:

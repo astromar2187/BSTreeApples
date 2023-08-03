@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter import ttk
-from BSTreeApples.BST import BST
-from BSTreeApples.ExtraWindows import InsertNameWindow
+from BST import BST
+from ExtraWindows import InsertNameWindow
 
 class BSTApp:
     def __init__(self, root):
