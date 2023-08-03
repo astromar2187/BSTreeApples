@@ -9,6 +9,7 @@ class BST:
     def __init__(self):
         self.root = None
 
+    #A implementar: verificador de chave repetida. Se a chave já existir, não insere e retorna False
     def insert(self, key):
         self.root = self._insert_recursively(self.root, key)
 
