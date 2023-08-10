@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter import ttk
 from BST import BST
-from ExtraWindows import InsertNameWindow
+from ExtraWindows import InsertNameWindow, ShowTreeWindow
+from BSTVizualizer import TreeVisualizer
 
 class BSTApp:
     def __init__(self, root):
@@ -53,6 +54,9 @@ class BSTApp:
         self.btn_traversals = ttk.Button(self.frame_buttons, text="Mostrar Travessias", command=self.show_traversals, style="MeuEstilo.TButton")
         self.btn_traversals.pack(side=tk.TOP, padx=5, pady=5)
 
+        self.btn_show_tree = ttk.Button(self.frame_buttons, text="Mostrar Árvore Gráfica", command=self.show_graphical_tree, style="MeuEstilo.TButton")
+        self.btn_show_tree.pack(side=tk.TOP, padx=5, pady=5)
+
     def create_bst(self):
         # Cria uma nova instância da classe BST
         self.bst = BST()
@@ -74,6 +78,12 @@ class BSTApp:
     def show_traversals(self):
         # Implementação para mostrar as travessias da árvore
         pass
+
+    def show_graphical_tree(self):
+        # Implementação para mostrar a árvore gráfica
+        viz = TreeVisualizer(self.bst)
+        viz.main()
+        show_tree_window = ShowTreeWindow(self.root, self.bst)
 
 if __name__ == "__main__":
     root = tk.Tk()

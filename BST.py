@@ -8,10 +8,12 @@ class BST:
 
     def __init__(self):
         self.root = None
+        self.keys = []
 
     #A implementar: verificador de chave repetida. Se a chave já existir, não insere e retorna False
     def insert(self, key):
         self.root = self._insert_recursively(self.root, key)
+        self.keys.append(key)
 
     def _insert_recursively(self, root, key):
         if root is None:
@@ -21,6 +23,17 @@ class BST:
         elif key > root.key:
             root.right = self._insert_recursively(root.right, key)
         return root
+    
+    #listar todas as chaves da árvore em ordem crescente
+    def list(self):
+        return self._list_recursively(self.root)
+    
+    def _list_recursively(self, root):
+        if root is not None:
+            self._list_recursively(root.left)
+            self.nodes.append(root.key)
+            self._list_recursively(root.right)
+        return self.keys
 
     def search(self, key):
         return self._search_recursively(self.root, key)
