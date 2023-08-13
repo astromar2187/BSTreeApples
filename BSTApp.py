@@ -70,19 +70,76 @@ class BSTApp:
     def create_bst(self):
         # Cria uma nova instância da classe BST
         self.bst = BST()
+
         # Abre uma nova janela para inserção de nomes
         InsertNameWindow(self.root, self.bst)
+
+        # Inicializa a árvore com os valores inseridos pelo usuário
+        for name in self.bst.names:
+            self.bst.insert(name)
+    
+    def get_info(self):
+        size = self.bst.get_size()
+        internal_length = self.bst.get_inner_length(self.bst.root)
+        balanced = self.bst.is_balanced()
+
+        return size, internal_length, balanced
+
 
     def show_info(self):
         # Implementação para mostrar informações da árvore
         if self.bst is None:
             ShowEmptyTreeWindow(self.root)
         else:
+            size, internal_length, balanced = self.get_info()
+
             ShowInfoWindow(self.root, self.bst)
+
+            info_label = tk.Label(self.root, text="Informações da árvore:", font=("Roboto", 12))
+            info_label.pack(padx=20, pady=10)
+
+            size_label = tk.Label(self.root, text="Tamanho:", font=("Roboto", 10))
+            size_label.pack(padx=20, pady=5) 
+            size_value = tk.Label(self.root, text=format(size), font=("Roboto", 10))
+            size_value.pack(padx=20, pady=5)
+
+            internal_length_label = tk.Label(self.root, text="Comprimento interno:", font=("Roboto", 10))
+            internal_length_label.pack(padx=20, pady=5)
+            internal_length_value = tk.Label(self.root, text=format(internal_length), font=("Roboto", 10))
+            internal_length_value.pack(padx=20, pady=5)
+
+            balanced_label = tk.Label(self.root, text="Balanceada:", font=("Roboto", 10))
+            balanced_label.pack(padx=20, pady=5)
+            balanced_value = tk.Label(self.root, text=format(balanced), font=("Roboto", 10))
+            balanced_value.pack(padx=20, pady=5)
+
+
+
+
 
     def show_internal_length(self):
         # Implementação para mostrar o comprimento interno da árvore
-        pass
+        if self.bst is not None:
+            internal_length = self.bst.get_inner_length(self.bst.root)
+
+            # Criar um popup para mostrar o comprimento interno
+            pop_up = tk.Toplevel(self.root)
+            pop_up.title("Comprimento Interno")
+
+            # Criar um label com o comprimento interno
+            label = tk.Label(pop_up, text="Comprimento interno: {}".format(internal_length))
+            label.pack()
+
+            # Criar um botão para fechar o popup
+            btn_close = tk.Button(pop_up, text="Fechar", command=pop_up.destroy)
+            btn_close.pack()
+
+        else:
+            # Se a árvore não existe, mostrar uma mensagem de erro
+            error_message = "A árvore não existe."
+            label = tk.Label(self.root, text=error_message)
+            label.pack()
+
 
     def is_balanced(self):
         if self.bst is None:
@@ -111,7 +168,30 @@ class BSTApp:
 
     def show_traversals(self):
         # Implementação para mostrar as travessias da árvore
-        pass
+        inorder_traversal = self.bst.inorder_traversal()
+        preorder_traversal = self.bst.preorder_traversal()
+        postorder_traversal = self.bst.postorder_traversal()
+
+        # Criar um popup para mostrar as travessias
+        pop_up = tk.Toplevel(self.root)
+        pop_up.title("Travessias da Árvore")
+
+        # Criar um label para cada travessia
+        label_inorder = tk.Label(pop_up, text="In-order traversal: {}".format(inorder_traversal))
+        label_preorder = tk.Label(pop_up, text="Pre-order traversal: {}".format(preorder_traversal))
+        label_postorder = tk.Label(pop_up, text="Post-order traversal: {}".format(postorder_traversal))
+
+        # Packar os labels no popup
+        label_inorder.pack()
+        label_preorder.pack()
+        label_postorder.pack()
+
+        # Criar um botão para fechar o popup
+        btn_close = tk.Button(pop_up, text="Fechar", command=pop_up.destroy)
+        btn_close.pack()
+
+
+
 
     def show_graphical_tree(self):
         # Implementação para mostrar a árvore gráfica
