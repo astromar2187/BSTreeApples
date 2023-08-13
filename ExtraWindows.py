@@ -97,17 +97,17 @@ class ShowInfoWindow:
         self.lbl_info = tk.Label(self.window, text="Informações da Árvore:", font=("Roboto", 18, "bold"))
         self.lbl_info.pack(pady=10)
 
-        # Exibir informações - A IMPLEMENTAR
-        self.lbl_size = tk.Label(self.window, text=f"Tamanho: self.bst.size", font=("Roboto", 16))
+        # Exibir informações
+        self.lbl_size = tk.Label(self.window, text=f"Tamanho: {self.bst.size}", font=("Roboto", 16))
         self.lbl_size.pack()
         
-        self.lbl_height = tk.Label(self.window, text=f"Altura: self.bst.height", font=("Roboto", 16))
+        self.lbl_height = tk.Label(self.window, text=f"Altura: {self.bst.get_height(self.bst.root)}", font=("Roboto", 16))
         self.lbl_height.pack()
 
-        self.lbl_min = tk.Label(self.window, text=f"Menor Elemento: self.bst.min", font=("Roboto", 16))
+        self.lbl_min = tk.Label(self.window, text=f"Nó mínimo: {self.bst.find_min()}", font=("Roboto", 16))
         self.lbl_min.pack()
 
-        self.lbl_max = tk.Label(self.window, text=f"Maior Elemento: self.bst.max", font=("Roboto", 16))
+        self.lbl_max = tk.Label(self.window, text=f"Nó máximo: {self.bst.find_max()}", font=("Roboto", 16))
         self.lbl_max.pack()
 
         self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")
@@ -115,4 +115,6 @@ class ShowInfoWindow:
 
         # Aplicar o grab_set() para bloquear interações com a janela principal
         self.window.grab_set()
+
+
 
