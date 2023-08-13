@@ -1,11 +1,33 @@
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter import ttk
-import tkinter as tk
-from tkinter import simpledialog, messagebox
-from tkinter import ttk
 from BST import BST
 
+class ShowEmptyTreeWindow:
+    def __init__(self, parent):
+        self.parent = parent
+
+        self.window = tk.Toplevel(parent)
+        self.window.title("Erro: árvore vazia")
+
+        # Carregar a imagem
+        self.error = tk.PhotoImage(file="iconX-quadrado.png")
+        self.error_reduzida = self.error.subsample(4, 4)  
+        self.label_error = tk.Label(self.window, image=self.error_reduzida)
+        self.label_error.image = self.error_reduzida
+        self.label_error.pack()
+
+        self.lbl_error = tk.Label(self.window, text=":/ Ainda não há maçãs nesta árvore", font=("Roboto", 18, "bold"))
+        self.lbl_error.pack(pady=10)
+
+        self.lbl_error = tk.Label(self.window, text="Crie uma árvore BST primeiro!", font=("Roboto", 12))
+        self.lbl_error.pack(pady=10)
+
+        self.btn_quit = ttk.Button(self.window, text="Voltar", command=self.window.destroy, style="MeuEstilo.TButton")
+        self.btn_quit.pack(pady=10)
+
+        # Aplicar o grab_set() para bloquear interações com a janela principal
+        self.window.grab_set()
 
 class InsertNameWindow:
     def __init__(self, parent, bst):
@@ -14,6 +36,8 @@ class InsertNameWindow:
 
         self.window = tk.Toplevel(parent)
         self.window.title("Inserir Nome")
+
+        self.window.geometry("400x400")
 
         self.lbl_insert = tk.Label(self.window, text="Inserir Nome:")
         self.lbl_insert.pack(pady=10)
@@ -50,8 +74,8 @@ class ShowTreeWindow:
 
         # Carregar a imagem
         self.tree = tk.PhotoImage(file='tree.png')
-        self.tree_reduzida = self.tree.subsample(2, 2)  # Reduzir o tamanho 
-        self.label_tree = tk.Label(self.window, image=self.tree_reduzida)
+        self.label_tree = tk.Label(self.window, image=self.tree)
+        self.label_tree.image = self.tree
         self.label_tree.pack()
 
         self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")
@@ -59,3 +83,36 @@ class ShowTreeWindow:
 
         # Aplicar o grab_set() para bloquear interações com a janela principal
         self.window.grab_set()
+
+class ShowInfoWindow:
+    def __init__(self, parent, bst):
+        self.parent = parent
+        self.bst = bst
+
+        self.window = tk.Toplevel(parent)
+        self.window.title("Informações da Árvore")
+
+        self.window.geometry("400x300")
+
+        self.lbl_info = tk.Label(self.window, text="Informações da Árvore:", font=("Roboto", 18, "bold"))
+        self.lbl_info.pack(pady=10)
+
+        # Exibir informações - A IMPLEMENTAR
+        self.lbl_size = tk.Label(self.window, text=f"Tamanho: self.bst.size", font=("Roboto", 16))
+        self.lbl_size.pack()
+        
+        self.lbl_height = tk.Label(self.window, text=f"Altura: self.bst.height", font=("Roboto", 16))
+        self.lbl_height.pack()
+
+        self.lbl_min = tk.Label(self.window, text=f"Menor Elemento: self.bst.min", font=("Roboto", 16))
+        self.lbl_min.pack()
+
+        self.lbl_max = tk.Label(self.window, text=f"Maior Elemento: self.bst.max", font=("Roboto", 16))
+        self.lbl_max.pack()
+
+        self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")
+        self.btn_quit.pack(pady=10)
+
+        # Aplicar o grab_set() para bloquear interações com a janela principal
+        self.window.grab_set()
+

@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter import ttk
 from BST import BST
-from ExtraWindows import InsertNameWindow, ShowTreeWindow
+from ExtraWindows import InsertNameWindow, ShowInfoWindow, ShowTreeWindow, ShowEmptyTreeWindow
 from BSTVizualizer import TreeVisualizer
 
 class BSTApp:
@@ -12,10 +12,16 @@ class BSTApp:
 
     def initialize_gui(self, root):
         self.root = root
-        self.root.title("BYSTree Apples")
+        self.root.title("BSTree Apples")
+
+        self.root.geometry("800x600")
+
+        # Carregar o ícone da janela principal
+        icon = tk.PhotoImage(file='icon-quadrado.png')
+        self.root.iconphoto(True, icon)  # Definir o ícone da janela principal
 
         # Carregar a imagem
-        self.logo = tk.PhotoImage(file="logo.png")
+        self.logo = tk.PhotoImage(file="mainwindow.png")
         self.logo_reduzida = self.logo.subsample(4, 4)  # Reduzir o tamanho 
         self.label_logo = tk.Label(self.root, image=self.logo_reduzida)
         self.label_logo.pack()
@@ -24,7 +30,7 @@ class BSTApp:
         self.frame_title = tk.Frame(self.root)
         self.frame_title.pack()
         # Criar o título
-        self.label_title = tk.Label(self.frame_title, text="BYSTree Apples", font=("Roboto", 20))
+        self.label_title = tk.Label(self.frame_title, text="BSTree Apples", font=("Roboto", 20))
         self.label_title.pack(side=tk.TOP)
         # Criar o subtítulo
         self.label_subtitle = tk.Label(self.frame_title, text="Manipulando árvores binárias de busca", font=("Roboto", 12))
@@ -57,23 +63,51 @@ class BSTApp:
         self.btn_show_tree = ttk.Button(self.frame_buttons, text="Mostrar Árvore Gráfica", command=self.show_graphical_tree, style="MeuEstilo.TButton")
         self.btn_show_tree.pack(side=tk.TOP, padx=5, pady=5)
 
+        # Criar o botão para sair do programa
+        self.btn_exit = ttk.Button(self.root, text="Sair do Programa", command=self.root.quit, style="MeuEstilo.TButton")
+        self.btn_exit.pack(side=tk.RIGHT, padx=10, pady=10)  # Posicionar à direita
+
     def create_bst(self):
         # Cria uma nova instância da classe BST
         self.bst = BST()
-        # Cria uma nova janela para inserção de nomes
-        insert_name_window = InsertNameWindow(self.root, self.bst)
+        # Abre uma nova janela para inserção de nomes
+        InsertNameWindow(self.root, self.bst)
 
     def show_info(self):
         # Implementação para mostrar informações da árvore
-        pass
+        if self.bst is None:
+            ShowEmptyTreeWindow(self.root)
+        else:
+            ShowInfoWindow(self.root, self.bst)
 
     def show_internal_length(self):
         # Implementação para mostrar o comprimento interno da árvore
         pass
 
     def is_balanced(self):
-        # Implementação para verificar se a árvore é balanceada
-        pass
+        if self.bst is None:
+            ShowEmptyTreeWindow(self.root)
+        else:
+            balanced = self.bst.is_balanced()
+            if balanced:
+                result_message = "A árvore está balanceada."
+                image = tk.PhotoImage(file="ok.png")
+            else:
+                result_message = "A árvore não está balanceada."
+                image = tk.PhotoImage(file="oknot.png")
+
+            result_dialog = tk.Toplevel(self.root)
+            result_dialog.title("Verificação de Balanceamento")
+
+            result_label = tk.Label(result_dialog, image=image)
+            result_label.pack()
+
+            result_label = tk.Label(result_dialog, text=result_message, font=("Roboto", 12))
+            result_label.pack(padx=20, pady=20)
+
+            return_button = tk.Button(result_dialog, text="Voltar", command=result_dialog.destroy, style="MeuEstilo.TButton")
+            return_button.pack(pady=10)
+
 
     def show_traversals(self):
         # Implementação para mostrar as travessias da árvore
@@ -81,9 +115,12 @@ class BSTApp:
 
     def show_graphical_tree(self):
         # Implementação para mostrar a árvore gráfica
-        viz = TreeVisualizer(self.bst)
-        viz.main()
-        show_tree_window = ShowTreeWindow(self.root, self.bst)
+        if self.bst is None:
+            ShowEmptyTreeWindow(self.root)
+        else:
+            viz = TreeVisualizer(self.bst)
+            viz.main()
+            ShowTreeWindow(self.root, self.bst)
 
 if __name__ == "__main__":
     root = tk.Tk()

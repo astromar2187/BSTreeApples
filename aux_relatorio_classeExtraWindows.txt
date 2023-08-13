@@ -1,0 +1,23 @@
+Essas são os principais aspectos da classe ExtraWindows.
+A função desta classe é criar as janelas extras que serão exibidas quando as opções do menu são acionadas.
+
+A classe `ShowEmptyTreeWindow` cria uma janela pop-up que exibe uma mensagem de erro quando 
+uma operação é tentada em uma Árvore Binária de Busca (BST) vazia. A janela pop-up exibe 
+mensagens informativas e inclui um botão "Voltar" para fechar a pop-up e retornar à janela 
+principal. Durante a exibição da pop-up, a interação com a janela principal é bloqueada.
+
+A classe InsertNameWindow cria uma janela pop-up onde os usuários podem inserir nomes. 
+Após inserção, os nomes são adicionados a uma Árvore Binária de Busca (BST). A janela contém um rótulo 
+"Inserir Nome", um campo de entrada, botões "Inserir" e "Sair". Quando "Inserir" é clicado, o nome é 
+inserido na BST e uma mensagem de confirmação é exibida.
+A janela "Inserir nomes" bloqueia interações com a janela principal até que seja fechada.
+
+A classe ShowInfoWindow cria uma janela pop-up que exibe informações sobre a Árvore Binária 
+de Busca (BST), como tamanho, altura, menor e maior elemento. As informações são exibidas em 
+rótulos e um botão "Sair" é fornecido para fechar a pop-up. Durante a exibição da pop-up, a 
+interação com a janela principal é bloqueada.
+
+A classe ShowTreeWindow cria uma janela pop-up que exibe uma representação gráfica da Árvore 
+Binária de Busca (BST). Ela carrega uma imagem da árvore, exibe-a em um rótulo e fornece um 
+botão "Sair" para fechar a pop-up. Durante a exibição da pop-up, a interação com a janela 
+principal é bloqueada.

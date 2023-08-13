@@ -1,0 +1,42 @@
+Esta classe TreeVisualizer permite criar visualizações gráficas de uma Árvore Binária de Busca (BST)
+usando a biblioteca Matplotlib. Ela desenha os nós da árvore como círculos e conecta os nós pai aos 
+filhos com linhas. O método plot_tree é utilizado para desenhar a árvore e o método _plot_tree é usado 
+de forma recursiva para desenhar os nós da árvore. O método main inicia o processo de desenho e, se um 
+caminho for fornecido, a imagem da árvore é salva nesse caminho.
+De forma mais detalhada, a classe é composta por:
+
+1. **Inicialização (`__init__`)**:
+   - A classe `BSTVisualizer` é inicializada com uma instância da classe `BST` como argumento. Isso permite 
+   que a classe visualize a árvore binária de busca.
+
+2. **Método `plot_tree`**:
+   - Este método é responsável por criar e exibir a representação gráfica da árvore binária de busca.
+   - Ele aceita dois parâmetros opcionais: `root` (nó raiz da árvore a ser visualizada) e `save_path` 
+   (caminho para salvar a imagem).
+   - O método cria uma figura e um eixo (subplot) para o gráfico. Ele desenha a base vertical da árvore (linha)
+    e chama o método privado `_plot_tree` para desenhar a estrutura da árvore e seus nós.
+   - A opção `save_path` permite salvar a imagem gerada como um arquivo de imagem (por exemplo, PNG) no 
+   diretório especificado.
+
+3. **Método `_plot_tree`**:
+   - Este é um método privado que é chamado recursivamente para desenhar os nós e conexões da árvore.
+   - Ele aceita vários parâmetros: `node` (nó atual), `x` e `y` (coordenadas do nó), `y_diff` (distância 
+   vertical entre os níveis) e `ax` (eixo para desenhar).
+   - O método desenha círculos para representar os nós, adiciona texto com as chaves dos nós e desenha linhas 
+   conectando pais e filhos. Ele também chama a si mesmo recursivamente para desenhar os filhos.
+
+4. **Método `main`**:
+   - Este método encapsula a lógica de chamada para gerar e exibir a imagem da árvore.
+   - Ele chama o método `plot_tree` com um caminho de salvamento padrão, que é "tree.png". Isso permite gerar 
+   a imagem da árvore e salvá-la no diretório corrente.
+
+5. **Bloco `__name__ == "__main__"`**:
+   - O código no bloco de execução condicional verifica se o script está sendo executado diretamente 
+   (não importado como um módulo). Ele cria uma instância da classe `BST`, insere nós na árvore e, em 
+   seguida, cria uma instância da classe `BSTVisualizer` com a árvore. Por fim, chama o método `main` para 
+   gerar e exibir a imagem da árvore.
+
+Em resumo, a classe `BSTVisualizer` encapsula a lógica para gerar e exibir a representação gráfica de uma 
+árvore binária de busca. Ela aceita uma instância da classe `BST`, permite personalização da representação e 
+oferece a opção de salvar a imagem. O método `main` simplifica a geração da imagem ao lidar com os detalhes da
+execução.

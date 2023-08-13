@@ -93,3 +93,29 @@ class BST:
         if root.right is None:
             return root.key
         return self._find_max_rec
+    
+    #arrumar - não está funcionando corretamente
+    def is_balanced(self):
+        return self._is_balanced_recursively(self.root)
+
+    def _is_balanced_recursively(self, root):
+        if root is None:
+            return True
+
+        left_height = self._get_height(root.left)
+        right_height = self._get_height(root.right)
+
+        if abs(left_height - right_height) > 1:
+            return False
+
+        return (self._is_balanced_recursively(root.left) and
+                self._is_balanced_recursively(root.right))
+
+    def _get_height(self, node):
+        if node is None:
+            return 0
+
+        left_height = self._get_height(node.left)
+        right_height = self._get_height(node.right)
+
+        return max(left_height, right_height) + 1
