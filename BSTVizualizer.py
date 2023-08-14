@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from BST import BST
 
 radius = 0.30
 class TreeVisualizer:
@@ -33,4 +32,5 @@ class TreeVisualizer:
     def main(self):
         save_path = 'tree.png'
         self.plot_tree(save_path=save_path)
+
 

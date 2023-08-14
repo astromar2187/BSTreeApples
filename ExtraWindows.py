@@ -116,5 +116,38 @@ class ShowInfoWindow:
         # Aplicar o grab_set() para bloquear interações com a janela principal
         self.window.grab_set()
 
+class ShowTraversalsWindow:
+    def __init__(self, parent, bst):
+        self.parent = parent
+        self.bst = bst
+
+        self.window = tk.Toplevel(parent)
+        self.window.title("Travessias da Árvore")
+        self.window.geometry("400x400")
+
+        self.lbl_travessia = tk.Label(self.window, text="Travessia: ", font=("Roboto", 18, "bold"))
+        self.lbl_travessia.pack(pady=10)
+
+        # Implementação para mostrar as travessias da árvore
+        inorder_traversal = self.bst.inorder_traversal()
+        preorder_traversal = self.bst.preorder_traversal()
+        postorder_traversal = self.bst.postorder_traversal()
+
+        # Criar um label para cada travessia
+        label_inorder = tk.Label(self.window, text="In-order: {}".format(inorder_traversal), font=("Roboto", 12))
+        label_preorder = tk.Label(self.window, text="Pre-order: {}".format(preorder_traversal), font=("Roboto", 12))
+        label_postorder = tk.Label(self.window, text="Post-order: {}".format(postorder_traversal), font=("Roboto", 12))
+
+        # Packar os labels no popup
+        label_inorder.pack()
+        label_preorder.pack()
+        label_postorder.pack()
+
+
+        self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")
+        self.btn_quit.pack(pady=10)
+
+        # Aplicar o grab_set() para bloquear interações com a janela principal
+        self.window.grab_set()
 
 

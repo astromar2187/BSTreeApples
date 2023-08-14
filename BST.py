@@ -105,7 +105,7 @@ class BST:
 
         
 
-    #arrumar - não está funcionando corretamente
+    '''#arrumar - não está funcionando corretamente
     def is_balanced(self):
         if self.root is None:
             return True
@@ -115,7 +115,7 @@ class BST:
     
     def _is_balanced_recursively(self, root):
         if root is None:
-            return
+            return'''
 
     def get_size(self):
         """Retorna o número de elementos na árvore."""
