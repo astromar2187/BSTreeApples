@@ -132,43 +132,18 @@ class ShowTraversalsWindow:
         inorder_traversal = self.bst.inorder_traversal()
         preorder_traversal = self.bst.preorder_traversal()
         postorder_traversal = self.bst.postorder_traversal()
+        level_order_traversal = self.bst.level_order()
 
         # Criar um label para cada travessia
-        label_inorder = tk.Label(self.window, text="In-order: {}".format(inorder_traversal), font=("Roboto", 12))
-        label_preorder = tk.Label(self.window, text="Pre-order: {}".format(preorder_traversal), font=("Roboto", 12))
-        label_postorder = tk.Label(self.window, text="Post-order: {}".format(postorder_traversal), font=("Roboto", 12))
-
+        label_inorder = tk.Label(self.window, text="Em-ordem: {}".format(inorder_traversal), font=("Roboto", 12))
+        label_preorder = tk.Label(self.window, text="Pré-ordem: {}".format(preorder_traversal), font=("Roboto", 12))
+        label_postorder = tk.Label(self.window, text="Pós-ordem: {}".format(postorder_traversal), font=("Roboto", 12))
+        label_level_order = tk.Label(self.window, text="Busca em largura: {}".format(level_order_traversal), font=("Roboto", 12))
+        
         # Packar os labels no popup
         label_inorder.pack()
         label_preorder.pack()
         label_postorder.pack()
-
-
-        self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")
-        self.btn_quit.pack(pady=10)
-
-        # Aplicar o grab_set() para bloquear interações com a janela principal
-        self.window.grab_set()
-
-class ShowLevelOrderWindow:
-    def __init__(self, parent, bst):
-        self.parent = parent
-        self.bst = bst
-
-        self.window = tk.Toplevel(parent)
-        self.window.title("Travessia em Nível")
-        self.window.geometry("400x400")
-
-        self.lbl_travessia = tk.Label(self.window, text="Travessia em Nível: ", font=("Roboto", 18, "bold"))
-        self.lbl_travessia.pack(pady=10)
-
-        # Implementação para mostrar a travessia em nível da árvore
-        level_order_traversal = self.bst.level_order()
-
-        # Criar um label para a travessia em nível
-        label_level_order = tk.Label(self.window, text="Level-order: {}".format(level_order_traversal), font=("Roboto", 12))
-
-        # Packar o label no popup
         label_level_order.pack()
 
         self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")

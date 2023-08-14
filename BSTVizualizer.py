@@ -9,8 +9,8 @@ class TreeVisualizer:
         if root is None:
             root = self.bst.root
         fig, ax = plt.subplots(figsize=(8, 6))
-        ax.plot([0, 0], [3 - radius, 0], 'k-')
-        self._plot_tree(root, 0, 3, 2, ax)
+        ax.plot([0, 0], [1.5 - radius, 0], 'k-')
+        self._plot_tree(root, 0, 1.5, 2, ax)
         ax.axis('off')
         
         if save_path:

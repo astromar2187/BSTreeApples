@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter import ttk
 from BST import BST
-from ExtraWindows import InsertNameWindow, ShowInfoWindow, ShowLevelOrderWindow, ShowTreeWindow, ShowEmptyTreeWindow, ShowTraversalsWindow
+from ExtraWindows import InsertNameWindow, ShowInfoWindow, ShowTreeWindow, ShowEmptyTreeWindow, ShowTraversalsWindow
 from BSTVizualizer import TreeVisualizer
 
 class BSTApp:
@@ -59,9 +59,6 @@ class BSTApp:
 
         self.btn_traversals = ttk.Button(self.frame_buttons, text="Mostrar Travessias", command=self.show_traversals, style="MeuEstilo.TButton")
         self.btn_traversals.pack(side=tk.TOP, padx=5, pady=5)
-
-        self.btn_show_level_order = ttk.Button(self.frame_buttons, text="Mostrar Nível a Nível", command=self.show_LevelOrder, style="MeuEstilo.TButton")
-        self.btn_show_level_order.pack(side=tk.TOP, padx=5, pady=5)
 
         self.btn_show_tree = ttk.Button(self.frame_buttons, text="Mostrar Árvore Gráfica", command=self.show_graphical_tree, style="MeuEstilo.TButton")
         self.btn_show_tree.pack(side=tk.TOP, padx=5, pady=5)
@@ -164,12 +161,6 @@ class BSTApp:
             viz = TreeVisualizer(self.bst)
             viz.main()
             ShowTreeWindow(self.root, self.bst)
-
-    def show_LevelOrder(self):
-        if self.bst is None:
-            ShowEmptyTreeWindow(self.root)
-        else:
-            ShowLevelOrderWindow(self.root, self.bst)
 
 if __name__ == "__main__":
     root = tk.Tk()
