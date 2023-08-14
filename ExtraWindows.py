@@ -150,4 +150,29 @@ class ShowTraversalsWindow:
         # Aplicar o grab_set() para bloquear interações com a janela principal
         self.window.grab_set()
 
+class ShowLevelOrderWindow:
+    def __init__(self, parent, bst):
+        self.parent = parent
+        self.bst = bst
 
+        self.window = tk.Toplevel(parent)
+        self.window.title("Travessia em Nível")
+        self.window.geometry("400x400")
+
+        self.lbl_travessia = tk.Label(self.window, text="Travessia em Nível: ", font=("Roboto", 18, "bold"))
+        self.lbl_travessia.pack(pady=10)
+
+        # Implementação para mostrar a travessia em nível da árvore
+        level_order_traversal = self.bst.level_order()
+
+        # Criar um label para a travessia em nível
+        label_level_order = tk.Label(self.window, text="Level-order: {}".format(level_order_traversal), font=("Roboto", 12))
+
+        # Packar o label no popup
+        label_level_order.pack()
+
+        self.btn_quit = ttk.Button(self.window, text="Sair", command=self.window.destroy, style="MeuEstilo.TButton")
+        self.btn_quit.pack(pady=10)
+
+        # Aplicar o grab_set() para bloquear interações com a janela principal
+        self.window.grab_set()
