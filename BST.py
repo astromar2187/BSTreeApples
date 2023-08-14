@@ -28,6 +28,7 @@ class BST:
             root.right = self._insert_recursively(root.right, key)
         return root
 
+
     #listar todas as chaves da árvore em ordem crescente
     def list(self):
         return self._list_recursively(self.root)
@@ -165,4 +166,14 @@ class BST:
         else:
             raise ValueError("Tipo de travessia inválido.")
 
-
+    def level_order(self):
+        """Retorna uma lista com os elementos da árvore, em ordem de nível."""
+        result = []
+        queue = [self.root]
+        while queue:
+            node = queue.pop(0)
+            if node is not None:
+                result.append(node.key)
+                queue.append(node.left)
+                queue.append(node.right)
+        return result
